@@ -2,31 +2,35 @@
 
 ## Overview
 
-The Flight Tracking & Operations Dashboard is a responsive Angular application built for aviation operations monitoring. It provides an interactive Leaflet map to visualize flights, operational KPIs, flight search and filtering, and detailed flight information.
+The **Flight Tracking & Operations Dashboard** is a responsive Angular application built for aviation operations monitoring. It provides an interactive Leaflet map to visualize flights, operational KPIs, flight search and filtering, and detailed flight information.
 
-This project was developed as part of the Flight Tracking Dashboard Assessment.
+This project was developed as part of the **Flight Tracking Dashboard Assessment**.
 
 ---
 
 ## Features
 
-### Interactive Flight Map
+### ✈️ Interactive Flight Map
+
 - Displays 20 flight markers using Leaflet
 - Marker clustering for better visualization
-- Flight popup showing:
+- Flight popup displaying:
   - Flight Number
   - Callsign
   - Origin
   - Destination
   - Status
 
-### Flight Route Visualization
+### 📍 Flight Route Visualization
+
 - Select any flight from the map or table
 - Draws a polyline between origin and destination
 - Automatically centers the map on the selected route
 
-### Flight Details Panel
+### 📋 Flight Details Panel
+
 Displays:
+
 - Flight Number
 - Callsign
 - Aircraft Type
@@ -36,34 +40,40 @@ Displays:
 - Estimated Departure Time
 - Estimated Arrival Time
 
-### Operations Dashboard
+### 📊 Operations Dashboard
+
 KPI Cards:
+
 - Total Flights
 - Active Flights
 - Delayed Flights
 - Arrived Flights
 
-### Search & Filters
+### 🔍 Search & Filters
+
 - Search by Callsign
 - Filter by Status
-- Filter by Origin
-- Filter by Destination
+- Filter by Origin Airport
+- Filter by Destination Airport
 
-### Flight Table
+### 📑 Flight Table
+
 - Responsive table
 - Sort by Flight Number
 - Sort by Status
-- Row selection synchronized with map
+- Row selection synchronized with the map
 
-### Responsive Design
+### 📱 Responsive Design
+
 Optimized for:
+
 - Desktop
 - Tablet
-- Mobile devices
+- Mobile
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 - Angular 20
 - TypeScript
@@ -76,28 +86,29 @@ Optimized for:
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```
 src/
  ├── app/
  │    ├── models/
- │    ├── pages/dashboard/
+ │    ├── pages/
+ │    │     └── dashboard/
  │    ├── services/
  │
- ├── public/
- │    ├── data/
- │    ├── images/
+public/
+ ├── data/
+ ├── images/
 ```
 
 ---
 
-## Installation
+# Installation
 
 Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Krishna-ui-web/flight-tracking-dashboard.git
 ```
 
 Navigate into the project
@@ -118,7 +129,7 @@ Run the application
 ng serve
 ```
 
-Open
+Open your browser:
 
 ```
 http://localhost:4200
@@ -126,7 +137,17 @@ http://localhost:4200
 
 ---
 
-## Build
+# Development
+
+If you experience Hot Module Replacement (HMR) refresh issues in certain development environments, you can alternatively start the application using:
+
+```bash
+ng serve --no-hmr
+```
+
+---
+
+# Build
 
 ```bash
 ng build
@@ -134,7 +155,7 @@ ng build
 
 ---
 
-## Mock Data
+# Mock Data
 
 Flight data is loaded from:
 
@@ -146,23 +167,25 @@ No backend service is required.
 
 ---
 
-## Design Highlights
+# Design Highlights
 
-- Clean aviation dashboard layout
+- Modern aviation dashboard layout
 - Responsive Bootstrap grid
 - Interactive Leaflet map
 - Marker clustering for improved visualization
-- Smooth route highlighting
+- Dynamic KPI cards
+- Route highlighting using polylines
+- Search and filtering
+- Sorting functionality
 - Empty state handling
-- Professional KPI cards
-- Modern card-based UI
+- Responsive UI for desktop and tablet devices
 
 ---
 
-## Future Improvements
+# Future Improvements
 
-- Real-time flight API integration
-- Flight animation
+- Real-time Flight API integration
+- Flight animation / playback
 - Dark Mode
 - Airport markers
 - Weather overlays
@@ -170,6 +193,8 @@ No backend service is required.
 
 ---
 
-## Author
+# Author
 
-Krishna
+**Krishna**
+
+Developed as part of the Flight Tracking & Operations Dashboard Assessment.
