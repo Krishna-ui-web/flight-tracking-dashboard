@@ -1,0 +1,32 @@
+:root{
+
+  /* Colors */
+  --primary:#1565C0;
+  --secondary:#1E88E5;
+  --success:#43A047;
+  --warning:#FB8C00;
+  --info:#1976D2;
+
+  --background:#F4F7FC;
+  --card:#FFFFFF;
+
+  --text:#1F2937;
+  --text-light:#6B7280;
+
+  --border:#E5E7EB;
+
+  /* Radius */
+  --radius:15px;
+
+  /* Shadow */
+  --shadow:0 8px 20px rgba(0,0,0,.08);
+
+  /* Transition */
+  --transition:.25s ease;
+}
+
+body{
+    background:var(--background);
+    color:var(--text);
+    font-family:'Segoe UI',sans-serif;
+}

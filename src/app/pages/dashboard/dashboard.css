@@ -1,0 +1,119 @@
+.dashboard-container{
+    padding:20px;
+   background:var(--background);
+    min-height:100vh;
+}
+
+.kpi-card{
+    border:none;
+   border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+.kpi-card i{
+    display: block;
+    margin-bottom: 8px;
+}
+.flight-info .badge{
+    font-size: 14px;
+    padding: 8px 12px;
+}
+.badge{
+    font-size:.8rem;
+    padding:7px 12px;
+    border-radius:20px;
+}
+.card{
+    transition:var(--transition);
+}
+.map-card{
+    border:none;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    height:650px;
+}
+
+.details-card{
+    border:none;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    height:650px;
+}
+
+#map{
+    width:100%;
+    height:560px;
+    border-radius: 10px;
+}
+
+.table-primary{
+    font-weight: 600;
+}
+.table tbody tr{
+    transition: var(--transition);
+}
+  .table-hover tbody tr:hover{
+background: #eef5ff;
+}
+
+ tbody tr{
+cursor:pointer;
+}
+
+.flight-info{
+    animation:fade .3s ease;
+}
+
+ /* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width:992px){
+    .map-card, .details-card{
+        height: auto;
+    }
+    #map{
+        height: 450px;
+    }
+}
+
+/* mobile */
+@media (max-width:768px){
+.dashboard-container{
+    padding: 12px;
+}
+.kpi-card{
+    margin-bottom: 15px;
+}
+
+#map{
+    height: 350px;
+}
+.details-card{
+    margin-top: 20px;
+}
+.table-card{
+    overflow-x: auto;
+}
+table{
+    min-width: 700px;
+}
+}
+
+/* Small Mobile */
+@media (max-width:576px){
+h3{
+    font-size: 1.2rem;
+}
+h4{
+    font-size: 1rem;
+}
+h5{
+    font-size: 1rem;
+}
+.kpi-card h3{
+    font-size: 1.5rem;
+}
+#map{
+    height: 300px;
+}
+}

@@ -1,0 +1,218 @@
+
+<div class="container-fluid dashboard-container">
+    <!-- KPI cards -->
+<div class="row g-3 mb-3">
+<div class="col-md-3">
+    <div class="card kpi-card">
+<div class="card-body text-center">
+    <i class="bi bi-airplane-fill text-primary fs-2"></i>
+    <h6 class="mt-2">Total  Flights</h6>
+     <h3>{{totalFlights}}</h3>
+</div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="card kpi-card">
+<div class="card-body text-center">
+    <i class="bi bi-check-circle-fill text-success fs-2"></i>
+    <h6 class="mt-2">Active Flights</h6>
+   <h3>{{activeFlights}}</h3>
+</div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="card kpi-card">
+<div class="card-body text-center">
+    <i class="bi bi-clock-fill text-warning fs-2"></i>
+    <h6 class="mt-2">Delayed Flights</h6>
+    <h3>{{delayedFlights}}</h3>
+</div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="card kpi-card">
+        <div class="card-body text-center">
+            <i class="bi bi-airplane-engines-fill text-info fs-2"></i>
+            <h6 class="mt-2">Arrived Flights</h6>
+            <h3>{{arrivedFlights}}</h3>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Search & Filters UI -->
+ <div class="row g-3 mb-3">
+    <!-- Search -->
+    <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Search Callsign (e.g. AIC101)"
+        [(ngModel)]="searchText"
+        (input)="applyFilters()">
+    </div>
+    <!-- Status -->
+    <div class="col-md-3">
+        <select class="form-select" [(ngModel)]="selectedStatus" (change)="applyFilters()">
+            <option value="All">All Status</option>
+             <option value="Active">Active</option>
+              <option value="Delayed">Delayed</option>
+               <option value="Arrived">Arrived</option>
+        </select>
+    </div>
+    <!-- Origin -->
+<div class="col-md-3">
+    <select class="form-select"
+    [(ngModel)]="selectedOrigin"
+    (change) = "applyFilters()">
+        <option value="All">All Origins</option>
+        @for(origin of origins; track origin){
+            <option [value]="origin">
+                {{origin}}
+            </option>
+        }
+    </select>
+</div>
+<!-- Destination -->
+ <div class="col-md-3">
+    <select class="form-select"
+    [(ngModel)]="selectedDestination"
+    (change) = "applyFilters()">
+        <option value="All">All Destinations</option>
+        @for(destination of destinations; track destination){
+            <option [value]="destination">
+                {{destination}}
+            </option>
+        }
+    </select>
+</div>
+
+ </div>
+
+<div class="row g-3 mb-3">
+    <!-- Map -->
+     <div class="col-lg-8">
+        <div class="card map-card">
+            <div class="card-body">
+                <h5>Live Flight Operations Map</h5>
+                <div id="map"></div>
+            </div>
+        </div>
+     </div>
+     <!-- Flight Details -->
+      <div class="col-lg-4">
+        <div class="card details-card">
+            <div class="card-body">
+                <h3>Flight Information</h3>
+                
+                <hr>
+                @if(selectedFlight){
+                    <div class="flight-info">
+                        <p>
+                            <strong>Flight Number: </strong> {{selectedFlight.flightNumber}}
+                        </p>
+                        <p><strong>Callsign: </strong>{{selectedFlight.callsign}}</p>
+                        <p>
+                            <strong>Aircraft Type: </strong> {{selectedFlight.aircraftType}}
+                        </p>
+                        <p>
+                            <strong>Origin: </strong> {{selectedFlight.origin}}
+                        </p>
+                        <p>
+                            <strong>Destination: </strong> {{selectedFlight.destination}}
+                        </p>
+                        <p>
+                            <strong>Current Status: </strong>{{selectedFlight.status}}
+                        @if(selectedFlight.status === 'Active'){
+<span class="badge bg-success">
+<i class="bi bi-check-circle-fill"></i>
+{{selectedFlight.status}}
+</span>
+                        }
+                        @else if(selectedFlight.status === 'Delayed'){
+<span class="badge bg-warning text-dark">
+<i class="bi bi-clock-fill"></i>
+{{selectedFlight.status}}
+</span>
+                        }
+                        @else{
+                            <span class="badge bg-primary">
+<i class="bi bi-airplane-engines-fill"></i>
+{{selectedFlight.status}}
+                            </span>
+                        }
+                        </p>
+                        <p><strong>Estimated Departure Time: </strong>{{selectedFlight.departureTime}}</p>
+                        <p><strong>Estimated Arrival Time: </strong>{{selectedFlight.arrivalTime}}</p>
+                    </div>
+                }
+                @else{
+                    <!-- <p>Select a flight marker to view details</p> -->
+               <div class="text-center text-muted mt-5">
+
+<h5>No Flight Selected</h5>
+
+<p>
+Click any marker on the map<br>
+or select a flight from the table.
+</p>
+
+</div>
+                }
+
+            </div>
+        </div>
+      </div>
+</div>
+
+<div class="row g-3 mt-4">
+    <div class="col-12">
+        <div class="card table-card">
+            <div class="card-body">
+                <h4>Flight Operations</h4>
+              <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+<thead>
+    <tr>
+        <th (click)="sortData('flightNumber')" style="cursor:pointer">Flight Number</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th (click)="sortData('status')" style="cursor: pointer;">Status</th>
+    </tr>
+</thead>
+<tbody>
+    @if(filteredFlights.length === 0){
+<tr>
+    <td colspan="4" class="text-center py-4">
+        No flights match your search or filters.
+    </td>
+</tr>
+    }
+    @else{
+    @for(flight of filteredFlights; track flight.id){
+<tr (click)="selectFlight(flight)" [class.table-primary]="selectedFlight?.id===flight.id">
+<td>{{flight.flightNumber}}</td>
+<td>{{flight.origin}}</td>
+<td>{{flight.destination}}</td>
+<td>
+    <span [class]="
+    flight.status === 'Active'
+    ?'badge bg-success'
+    :flight.status === 'Delayed'
+    ?'badge bg-warning text-dark'
+    : 'badge bg-primary'
+    ">
+{{flight.status}}
+    </span>
+</td>
+</tr>
+    }
+}
+</tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
